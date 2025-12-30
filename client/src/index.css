@@ -40,77 +40,91 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Custom fonts - Swiss Modernism meets Scandinavian Minimalism */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
+  /* Brand colors - Forest green and terracotta palette */
+  --primary: #1B4332; /* Deep forest green */
+  --primary-foreground: #F8F4E8; /* Soft cream */
+  --secondary: #E07A5F; /* Warm terracotta */
+  --secondary-foreground: #2D3142; /* Charcoal */
+  
+  --sidebar-primary: #1B4332;
+  --sidebar-primary-foreground: #F8F4E8;
+  
+  --chart-1: #1B4332;
+  --chart-2: #2D6A4F;
+  --chart-3: #52B788;
+  --chart-4: #E07A5F;
+  --chart-5: #F4A261;
+  
+  --radius: 0.25rem; /* Minimal radius for Swiss precision */
+  
+  /* Light theme - Scandinavian warmth */
+  --background: #F8F4E8; /* Soft cream background */
+  --foreground: #2D3142; /* Charcoal text */
+  --card: #FFFFFF; /* Pure white cards */
+  --card-foreground: #2D3142;
+  --popover: #FFFFFF;
+  --popover-foreground: #2D3142;
+  --muted: #EDE9DD; /* Slightly darker cream */
+  --muted-foreground: #6B7280;
+  --accent: #E07A5F; /* Terracotta accent */
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #D1CEC7; /* Subtle border */
+  --input: #D1CEC7;
+  --ring: #1B4332;
+  
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #2D3142;
+  --sidebar-accent: #EDE9DD;
+  --sidebar-accent-foreground: #2D3142;
+  --sidebar-border: #D1CEC7;
+  --sidebar-ring: #1B4332;
 }
 
 .dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  --primary: #52B788;
+  --primary-foreground: #1B4332;
+  --sidebar-primary: #52B788;
+  --sidebar-primary-foreground: #1B4332;
+  
+  --background: #1A1A1A;
+  --foreground: #F8F4E8;
+  --card: #2D2D2D;
+  --card-foreground: #F8F4E8;
+  --popover: #2D2D2D;
+  --popover-foreground: #F8F4E8;
+  --secondary: #E07A5F;
+  --secondary-foreground: #F8F4E8;
+  --muted: #3D3D3D;
+  --muted-foreground: #A0A0A0;
+  --accent: #E07A5F;
+  --accent-foreground: #FFFFFF;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #404040;
+  --input: #404040;
+  --ring: #52B788;
+  --chart-1: #52B788;
+  --chart-2: #2D6A4F;
+  --chart-3: #1B4332;
+  --chart-4: #E07A5F;
+  --chart-5: #F4A261;
+  
+  --sidebar: #2D2D2D;
+  --sidebar-foreground: #F8F4E8;
+  --sidebar-accent: #3D3D3D;
+  --sidebar-accent-foreground: #F8F4E8;
+  --sidebar-border: #404040;
+  --sidebar-ring: #52B788;
 }
 
 @layer base {
@@ -119,6 +133,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -134,24 +153,11 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -162,16 +168,55 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
+  
+  /* Diagonal divider utility - Swiss Modernism signature element */
+  .diagonal-divider {
+    clip-path: polygon(0 0, 100% 7%, 100% 100%, 0 100%);
+    margin-top: -3rem;
+    padding-top: 5rem;
+  }
+  
+  /* Section number styling - Swiss typography */
+  .section-number {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 8rem;
+    line-height: 1;
+    color: rgba(27, 67, 50, 0.08);
+    position: absolute;
+    z-index: 0;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
 }

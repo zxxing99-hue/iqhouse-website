@@ -1,25 +1,206 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
 /**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+ * Design Philosophy: Swiss Modernism meets Scandinavian Minimalism
+ * Home page - Asymmetric layouts, generous whitespace, natural imagery
  */
+
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Link } from 'wouter';
+import { ArrowRight, Lightbulb, Package, Palette } from 'lucide-react';
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+  const { t } = useLanguage();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
+    <div className="min-h-screen">
+      {/* Hero Section - Asymmetric layout with background image */}
+      <section className="relative min-h-screen flex items-center pt-20">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(/images/hero-background.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'right center',
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/60" />
+        </div>
+
+        {/* Content */}
+        <div className="container relative z-10">
+          <div className="max-w-2xl">
+            <div className="space-y-6 animate-fade-up">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-foreground">
+                {t.home.hero.headline}
+              </h1>
+              <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
+                {t.home.hero.subheadline}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Link href="/oem-odm">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 gap-2">
+                    {t.home.hero.cta1}
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+                <Link href="/philosophy">
+                  <Button size="lg" variant="outline">
+                    {t.home.hero.cta2}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Are Section - 60/40 split */}
+      <section className="py-24 bg-card">
+        <div className="container">
+          <div className="grid lg:grid-cols-5 gap-12 items-center">
+            <div className="lg:col-span-2">
+              <span className="text-sm font-mono text-primary uppercase tracking-wider">01</span>
+              <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                {t.home.whoWeAre.title}
+              </h2>
+            </div>
+            <div className="lg:col-span-3 space-y-6">
+              <p className="text-lg text-foreground/80 leading-relaxed">
+                {t.home.whoWeAre.description}
+              </p>
+              <ul className="space-y-4">
+                {[t.home.whoWeAre.point1, t.home.whoWeAre.point2, t.home.whoWeAre.point3].map((point, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                    <span className="text-foreground/80">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Offer Section - Cards */}
+      <section className="py-24">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-mono text-primary uppercase tracking-wider">02</span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+              {t.home.whatWeOffer.title}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Palette,
+                title: t.home.whatWeOffer.service1Title,
+                desc: t.home.whatWeOffer.service1Desc,
+              },
+              {
+                icon: Package,
+                title: t.home.whatWeOffer.service2Title,
+                desc: t.home.whatWeOffer.service2Desc,
+              },
+              {
+                icon: Lightbulb,
+                title: t.home.whatWeOffer.service3Title,
+                desc: t.home.whatWeOffer.service3Desc,
+              },
+            ].map((service, i) => (
+              <Card key={i} className="border-2 hover:border-primary transition-colors">
+                <CardContent className="p-8">
+                  <service.icon className="w-12 h-12 text-primary mb-6" />
+                  <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+                  <p className="text-foreground/70 leading-relaxed">{service.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Design Philosophy Section - Image + Text */}
+      <section className="py-24 bg-card">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <img
+                src="/images/design-philosophy.png"
+                alt="Design Philosophy"
+                className="w-full h-auto rounded-lg shadow-2xl"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <span className="text-sm font-mono text-primary uppercase tracking-wider">03</span>
+              <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                {t.home.designPhilosophy.title}
+              </h2>
+              <p className="text-muted-foreground mb-8">{t.home.designPhilosophy.subtitle}</p>
+              <ul className="space-y-6">
+                {[
+                  t.home.designPhilosophy.principle1,
+                  t.home.designPhilosophy.principle2,
+                  t.home.designPhilosophy.principle3,
+                  t.home.designPhilosophy.principle4,
+                ].map((principle, i) => (
+                  <li key={i} className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold text-sm">{i + 1}</span>
+                    </div>
+                    <p className="text-foreground/80 leading-relaxed">{principle}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Work With Section */}
+      <section className="py-24">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-mono text-primary uppercase tracking-wider">04</span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+              {t.home.whoWeWorkWith.title}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {[
+              t.home.whoWeWorkWith.client1,
+              t.home.whoWeWorkWith.client2,
+              t.home.whoWeWorkWith.client3,
+            ].map((client, i) => (
+              <div key={i} className="text-center p-8">
+                <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-secondary">{i + 1}</span>
+                </div>
+                <p className="text-foreground/80 leading-relaxed">{client}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-24 bg-primary text-primary-foreground diagonal-divider">
+        <div className="container text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 max-w-3xl mx-auto">
+            {t.home.finalCta.title}
+          </h2>
+          <Link href="/contact">
+            <Button size="lg" variant="secondary" className="gap-2">
+              {t.home.finalCta.button}
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
