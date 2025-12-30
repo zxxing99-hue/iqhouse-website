@@ -14,25 +14,25 @@ export default function AdminDashboard() {
 
   const stats = [
     {
-      title: 'Published Posts',
+      title: '已发布文章',
       value: publishedPosts,
       icon: Eye,
       color: 'text-green-600',
     },
     {
-      title: 'Draft Posts',
+      title: '草稿文章',
       value: draftPosts,
       icon: EyeOff,
       color: 'text-yellow-600',
     },
     {
-      title: 'Published Products',
+      title: '已发布产品',
       value: publishedProducts,
       icon: Eye,
       color: 'text-blue-600',
     },
     {
-      title: 'Draft Products',
+      title: '草稿产品',
       value: draftProducts,
       icon: EyeOff,
       color: 'text-orange-600',
@@ -43,9 +43,9 @@ export default function AdminDashboard() {
     <AdminLayout>
       <div className="p-6 space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <h1 className="text-3xl font-bold">控制台</h1>
           <p className="text-muted-foreground mt-2">
-            Welcome to IQHouse Admin Panel
+            欢迎使用IQHouse管理后台
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function AdminDashboard() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileText className="w-5 h-5" />
-                Recent Blog Posts
+                最近博客文章
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
                       <div className="flex-1 min-w-0">
                         <p className="font-medium truncate">{post.title}</p>
                         <p className="text-sm text-muted-foreground">
-                          {post.language.toUpperCase()} • {post.published ? 'Published' : 'Draft'}
+                          {post.language.toUpperCase()} • {post.published ? '已发布' : '草稿'}
                         </p>
                       </div>
                     </div>
@@ -92,7 +92,7 @@ export default function AdminDashboard() {
                 </div>
               ) : (
                 <p className="text-muted-foreground text-center py-4">
-                  No blog posts yet
+                  暂无博客文章
                 </p>
               )}
             </CardContent>
@@ -102,7 +102,7 @@ export default function AdminDashboard() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Package className="w-5 h-5" />
-                Recent Products
+                最近产品
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -113,7 +113,7 @@ export default function AdminDashboard() {
                       <div className="flex-1 min-w-0">
                         <p className="font-medium truncate">{product.name}</p>
                         <p className="text-sm text-muted-foreground">
-                          {product.category} • {product.published ? 'Published' : 'Draft'}
+                          {product.category} • {product.published ? '已发布' : '草稿'}
                         </p>
                       </div>
                     </div>
@@ -121,7 +121,7 @@ export default function AdminDashboard() {
                 </div>
               ) : (
                 <p className="text-muted-foreground text-center py-4">
-                  No products yet
+                  暂无产品
                 </p>
               )}
             </CardContent>

@@ -28,9 +28,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   };
 
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', href: '/admin' },
-    { icon: FileText, label: 'Blog Posts', href: '/admin/blog' },
-    { icon: Package, label: 'Products', href: '/admin/products' },
+    { icon: LayoutDashboard, label: '控制台', href: '/admin' },
+    { icon: FileText, label: '博客文章', href: '/admin/blog' },
+    { icon: Package, label: '产品管理', href: '/admin/products' },
   ];
 
   const SidebarContent = () => (
@@ -38,7 +38,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       <div className="p-6">
         <Link href="/">
           <div className="flex items-center gap-2 cursor-pointer">
-            <img src="/images/logo.png" alt="IQHouse" className="h-8" />
+            <h2 className="text-xl font-bold">管理后台</h2>
           </div>
         </Link>
       </div>
@@ -75,7 +75,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           onClick={handleLogout}
         >
           <LogOut className="w-4 h-4" />
-          Logout
+          退出登录
         </Button>
       </div>
     </>
@@ -92,7 +92,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         >
           {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </Button>
-        <span className="ml-4 font-bold">Admin Panel</span>
+        <span className="ml-4 font-bold">管理后台</span>
       </div>
 
       {/* Mobile Sidebar Overlay */}

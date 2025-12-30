@@ -90,7 +90,7 @@ export default function ProductForm({ productId }: ProductFormProps) {
     return (
       <AdminLayout>
         <div className="p-6">
-          <p className="text-center">Loading...</p>
+          <p className="text-center">加载中...</p>
         </div>
       </AdminLayout>
     );
@@ -101,22 +101,22 @@ export default function ProductForm({ productId }: ProductFormProps) {
       <div className="p-6 space-y-6">
         <div>
           <h1 className="text-3xl font-bold">
-            {isEdit ? 'Edit Product' : 'New Product'}
+            {isEdit ? '编辑产品' : '新建产品'}
           </h1>
           <p className="text-muted-foreground mt-2">
-            {isEdit ? 'Update product details' : 'Add a new product to the library'}
+            {isEdit ? '更新产品详情' : '添加新产品到产品库'}
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
           <Card>
             <CardHeader>
-              <CardTitle>Product Details</CardTitle>
+              <CardTitle>产品详情</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name (English) *</Label>
+                  <Label htmlFor="name">产品名称 (English) *</Label>
                   <Input
                     id="name"
                     value={formData.name}
@@ -127,7 +127,7 @@ export default function ProductForm({ productId }: ProductFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="nameZh">Name (中文)</Label>
+                  <Label htmlFor="nameZh">产品名称 (中文)</Label>
                   <Input
                     id="nameZh"
                     value={formData.nameZh}
@@ -139,7 +139,7 @@ export default function ProductForm({ productId }: ProductFormProps) {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="category">Category *</Label>
+                  <Label htmlFor="category">分类 *</Label>
                   <Select
                     value={formData.category}
                     onValueChange={(value: any) => setFormData(prev => ({ ...prev, category: value }))}
@@ -158,18 +158,18 @@ export default function ProductForm({ productId }: ProductFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="ageRange">Age Range</Label>
+                  <Label htmlFor="ageRange">适用年龄</Label>
                   <Input
                     id="ageRange"
                     value={formData.ageRange}
                     onChange={(e) => setFormData(prev => ({ ...prev, ageRange: e.target.value }))}
-                    placeholder="e.g., 3-6 years"
+                    placeholder="例如：3-6岁"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="description">Description (English)</Label>
+                <Label htmlFor="description">产品描述 (English)</Label>
                 <Textarea
                   id="description"
                   value={formData.description}
@@ -180,7 +180,7 @@ export default function ProductForm({ productId }: ProductFormProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="descriptionZh">Description (中文)</Label>
+                <Label htmlFor="descriptionZh">产品描述 (中文)</Label>
                 <Textarea
                   id="descriptionZh"
                   value={formData.descriptionZh}
@@ -196,19 +196,19 @@ export default function ProductForm({ productId }: ProductFormProps) {
                   checked={formData.published}
                   onCheckedChange={(checked) => setFormData(prev => ({ ...prev, published: checked }))}
                 />
-                <Label htmlFor="published">Publish immediately</Label>
+                <Label htmlFor="published">立即发布</Label>
               </div>
 
               <div className="flex gap-4">
                 <Button type="submit" disabled={createMutation.isPending || updateMutation.isPending}>
-                  {isEdit ? 'Update Product' : 'Create Product'}
+                  {isEdit ? '更新产品' : '创建产品'}
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setLocation('/admin/products')}
                 >
-                  Cancel
+                  取消
                 </Button>
               </div>
             </CardContent>

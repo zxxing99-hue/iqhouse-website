@@ -66,26 +66,26 @@ export default function BlogList() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Blog Posts</h1>
+            <h1 className="text-3xl font-bold">博客文章</h1>
             <p className="text-muted-foreground mt-2">
-              Manage your blog content
+              管理您的博客内容
             </p>
           </div>
           <Link href="/admin/blog/new">
             <Button className="gap-2">
               <Plus className="w-4 h-4" />
-              New Post
+              新建文章
             </Button>
           </Link>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>All Posts</CardTitle>
+            <CardTitle>所有文章</CardTitle>
           </CardHeader>
           <CardContent>
             {isLoading ? (
-              <p className="text-center py-8 text-muted-foreground">Loading...</p>
+              <p className="text-center py-8 text-muted-foreground">加载中...</p>
             ) : posts && posts.length > 0 ? (
               <div className="space-y-4">
                 {posts.map((post) => (
@@ -97,7 +97,7 @@ export default function BlogList() {
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-semibold truncate">{post.title}</h3>
                         <Badge variant={post.published ? 'default' : 'secondary'}>
-                          {post.published ? 'Published' : 'Draft'}
+                          {post.published ? '已发布' : '草稿'}
                         </Badge>
                         <Badge variant="outline">{post.language.toUpperCase()}</Badge>
                       </div>
@@ -107,7 +107,7 @@ export default function BlogList() {
                         </p>
                       )}
                       <p className="text-xs text-muted-foreground mt-2">
-                        Created: {formatDate(post.createdAt)} • Updated: {formatDate(post.updatedAt)}
+                        创建: {formatDate(post.createdAt)} • 更新: {formatDate(post.updatedAt)}
                       </p>
                     </div>
                     <div className="flex items-center gap-2 ml-4">
@@ -115,7 +115,7 @@ export default function BlogList() {
                         variant="ghost"
                         size="icon"
                         onClick={() => handleTogglePublish(post.id, post.published)}
-                        title={post.published ? 'Unpublish' : 'Publish'}
+                        title={post.published ? '取消发布' : '发布'}
                       >
                         {post.published ? (
                           <EyeOff className="w-4 h-4" />
@@ -136,15 +136,15 @@ export default function BlogList() {
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                           <AlertDialogHeader>
-                            <AlertDialogTitle>Delete Post</AlertDialogTitle>
+                            <AlertDialogTitle>删除文章</AlertDialogTitle>
                             <AlertDialogDescription>
-                              Are you sure you want to delete "{post.title}"? This action cannot be undone.
+                              确定要删除“{post.title}”吗？此操作无法撤销。
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogCancel>取消</AlertDialogCancel>
                             <AlertDialogAction onClick={() => handleDelete(post.id)}>
-                              Delete
+                              删除
                             </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
@@ -155,9 +155,9 @@ export default function BlogList() {
               </div>
             ) : (
               <div className="text-center py-12">
-                <p className="text-muted-foreground mb-4">No blog posts yet</p>
+                <p className="text-muted-foreground mb-4">暂无博客文章</p>
                 <Link href="/admin/blog/new">
-                  <Button>Create your first post</Button>
+                  <Button>创建第一篇文章</Button>
                 </Link>
               </div>
             )}

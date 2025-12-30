@@ -107,7 +107,7 @@ export default function BlogForm({ postId }: BlogFormProps) {
     return (
       <AdminLayout>
         <div className="p-6">
-          <p className="text-center">Loading...</p>
+          <p className="text-center">加载中...</p>
         </div>
       </AdminLayout>
     );
@@ -118,32 +118,32 @@ export default function BlogForm({ postId }: BlogFormProps) {
       <div className="p-6 space-y-6">
         <div>
           <h1 className="text-3xl font-bold">
-            {isEdit ? 'Edit Post' : 'New Post'}
+            {isEdit ? '编辑文章' : '新建文章'}
           </h1>
           <p className="text-muted-foreground mt-2">
-            {isEdit ? 'Update your blog post' : 'Create a new blog post'}
+            {isEdit ? '更新您的博客文章' : '创建一篇新的博客文章'}
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
           <Card>
             <CardHeader>
-              <CardTitle>Post Details</CardTitle>
+              <CardTitle>文章详情</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="title">Title *</Label>
+                <Label htmlFor="title">标题 *</Label>
                 <Input
                   id="title"
                   value={formData.title}
                   onChange={(e) => handleTitleChange(e.target.value)}
-                  placeholder="Enter post title"
+                  placeholder="输入文章标题"
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="slug">Slug *</Label>
+                <Label htmlFor="slug">URL别名 *</Label>
                 <Input
                   id="slug"
                   value={formData.slug}
@@ -152,22 +152,22 @@ export default function BlogForm({ postId }: BlogFormProps) {
                   required
                 />
                 <p className="text-sm text-muted-foreground">
-                  URL-friendly version of the title
+                  用于URL的标题版本
                 </p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="excerpt">Excerpt</Label>
+                <Label htmlFor="excerpt">摘要</Label>
                 <Input
                   id="excerpt"
                   value={formData.excerpt}
                   onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
-                  placeholder="Brief summary of the post"
+                  placeholder="文章简要摘要"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="coverImage">Cover Image URL</Label>
+                <Label htmlFor="coverImage">封面图片URL</Label>
                 <Input
                   id="coverImage"
                   value={formData.coverImage}
@@ -177,7 +177,7 @@ export default function BlogForm({ postId }: BlogFormProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="language">Language *</Label>
+                <Label htmlFor="language">语言 *</Label>
                 <Select
                   value={formData.language}
                   onValueChange={(value: 'en' | 'zh') => setFormData(prev => ({ ...prev, language: value }))}
@@ -193,7 +193,7 @@ export default function BlogForm({ postId }: BlogFormProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="content">Content *</Label>
+                <Label htmlFor="content">内容 *</Label>
                 <div data-color-mode="light">
                   <MDEditor
                     value={formData.content}
@@ -209,19 +209,19 @@ export default function BlogForm({ postId }: BlogFormProps) {
                   checked={formData.published}
                   onCheckedChange={(checked) => setFormData(prev => ({ ...prev, published: checked }))}
                 />
-                <Label htmlFor="published">Publish immediately</Label>
+                <Label htmlFor="published">立即发布</Label>
               </div>
 
               <div className="flex gap-4">
                 <Button type="submit" disabled={createMutation.isPending || updateMutation.isPending}>
-                  {isEdit ? 'Update Post' : 'Create Post'}
+                  {isEdit ? '更新文章' : '创建文章'}
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setLocation('/admin/blog')}
                 >
-                  Cancel
+                  取消
                 </Button>
               </div>
             </CardContent>

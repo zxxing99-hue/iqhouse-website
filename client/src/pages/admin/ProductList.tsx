@@ -65,26 +65,26 @@ export default function ProductList() {
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Products</h1>
+            <h1 className="text-3xl font-bold">产品管理</h1>
             <p className="text-muted-foreground mt-2">
-              Manage your product library
+              管理您的产品库
             </p>
           </div>
           <Link href="/admin/products/new">
             <Button className="gap-2">
               <Plus className="w-4 h-4" />
-              New Product
+              新建产品
             </Button>
           </Link>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>All Products</CardTitle>
+            <CardTitle>所有产品</CardTitle>
           </CardHeader>
           <CardContent>
             {isLoading ? (
-              <p className="text-center py-8 text-muted-foreground">Loading...</p>
+              <p className="text-center py-8 text-muted-foreground">加载中...</p>
             ) : products && products.length > 0 ? (
               <div className="space-y-4">
                 {products.map((product) => (
@@ -99,7 +99,7 @@ export default function ProductList() {
                           <span className="text-sm text-muted-foreground">({product.nameZh})</span>
                         )}
                         <Badge variant={product.published ? 'default' : 'secondary'}>
-                          {product.published ? 'Published' : 'Draft'}
+                          {product.published ? '已发布' : '草稿'}
                         </Badge>
                         <Badge variant="outline">{categoryLabels[product.category]}</Badge>
                       </div>
@@ -110,7 +110,7 @@ export default function ProductList() {
                       )}
                       {product.ageRange && (
                         <p className="text-xs text-muted-foreground mt-2">
-                          Age Range: {product.ageRange}
+                          适用年龄: {product.ageRange}
                         </p>
                       )}
                     </div>
@@ -119,7 +119,7 @@ export default function ProductList() {
                         variant="ghost"
                         size="icon"
                         onClick={() => handleTogglePublish(product.id, product.published)}
-                        title={product.published ? 'Unpublish' : 'Publish'}
+                        title={product.published ? '取消发布' : '发布'}
                       >
                         {product.published ? (
                           <EyeOff className="w-4 h-4" />
@@ -140,15 +140,15 @@ export default function ProductList() {
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                           <AlertDialogHeader>
-                            <AlertDialogTitle>Delete Product</AlertDialogTitle>
+                            <AlertDialogTitle>删除产品</AlertDialogTitle>
                             <AlertDialogDescription>
-                              Are you sure you want to delete "{product.name}"? This action cannot be undone.
+                              确定要删除“{product.name}”吗？此操作无法撤销。
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogCancel>取消</AlertDialogCancel>
                             <AlertDialogAction onClick={() => handleDelete(product.id)}>
-                              Delete
+                              删除
                             </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
@@ -159,9 +159,9 @@ export default function ProductList() {
               </div>
             ) : (
               <div className="text-center py-12">
-                <p className="text-muted-foreground mb-4">No products yet</p>
+                <p className="text-muted-foreground mb-4">暂无产品</p>
                 <Link href="/admin/products/new">
-                  <Button>Create your first product</Button>
+                  <Button>创建第一个产品</Button>
                 </Link>
               </div>
             )}

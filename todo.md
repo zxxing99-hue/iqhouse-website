@@ -24,3 +24,8 @@
 - [x] Test product CRUD operations
 - [ ] Test image upload functionality - Basic structure ready, S3 integration can be added later
 - [x] Test admin permissions
+
+
+## UI Improvements
+- [x] Change admin interface language to Chinese
+- [x] Remove logo from admin layout
