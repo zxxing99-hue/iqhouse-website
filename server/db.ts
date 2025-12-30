@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, desc, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, posts, InsertPost, products, InsertProduct } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,114 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// Blog Posts Functions
+export async function getAllPosts(language?: 'en' | 'zh', publishedOnly = false) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const conditions = [];
+  if (language) {
+    conditions.push(eq(posts.language, language));
+  }
+  if (publishedOnly) {
+    conditions.push(eq(posts.published, 1));
+  }
+
+  const result = await db
+    .select()
+    .from(posts)
+    .where(conditions.length > 0 ? and(...conditions) : undefined)
+    .orderBy(desc(posts.createdAt));
+
+  return result;
+}
+
+export async function getPostById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(posts).where(eq(posts.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getPostBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(posts).where(eq(posts.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createPost(post: InsertPost) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.insert(posts).values(post);
+  return result;
+}
+
+export async function updatePost(id: number, post: Partial<InsertPost>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(posts).set(post).where(eq(posts.id, id));
+}
+
+export async function deletePost(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.delete(posts).where(eq(posts.id, id));
+}
+
+// Products Functions
+export async function getAllProducts(category?: string, publishedOnly = false) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const conditions = [];
+  if (category) {
+    conditions.push(eq(products.category, category as any));
+  }
+  if (publishedOnly) {
+    conditions.push(eq(products.published, 1));
+  }
+
+  const result = await db
+    .select()
+    .from(products)
+    .where(conditions.length > 0 ? and(...conditions) : undefined)
+    .orderBy(desc(products.createdAt));
+
+  return result;
+}
+
+export async function getProductById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(products).where(eq(products.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createProduct(product: InsertProduct) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.insert(products).values(product);
+  return result;
+}
+
+export async function updateProduct(id: number, product: Partial<InsertProduct>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(products).set(product).where(eq(products.id, id));
+}
+
+export async function deleteProduct(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.delete(products).where(eq(products.id, id));
+}

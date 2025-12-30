@@ -14,23 +14,52 @@ import Capabilities from "./pages/Capabilities";
 import ProductLibrary from "./pages/ProductLibrary";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import AdminDashboard from "./pages/admin/Dashboard";
+import BlogList from "./pages/admin/BlogList";
+import BlogForm from "./pages/admin/BlogForm";
+import ProductList from "./pages/admin/ProductList";
+import ProductForm from "./pages/admin/ProductForm";
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
-    <>
-      <Navigation />
-      <Switch>
-       <Route path={"/"} component={Home} />
-      <Route path={"/oem-odm"} component={OemOdm} />
-      <Route path={"/classroom"} component={Classroom} />
-      <Route path={"/capabilities"} component={Capabilities} />
-      <Route path={"/product-library"} component={ProductLibrary} />
-      <Route path={"/about"} component={About} />
-      <Route path={"/contact"} component={Contact} />        <Route path="/404" component={NotFound} />
-        <Route component={NotFound} />
-      </Switch>
-      <Footer />
-    </>
+    <Switch>
+      {/* Admin Routes - No Navigation/Footer */}
+      <Route path="/admin" component={AdminDashboard} />
+      <Route path="/admin/blog" component={BlogList} />
+      <Route path="/admin/blog/new">
+        {() => <BlogForm />}
+      </Route>
+      <Route path="/admin/blog/edit/:id">
+        {(params) => <BlogForm postId={params.id} />}
+      </Route>
+      <Route path="/admin/products" component={ProductList} />
+      <Route path="/admin/products/new">
+        {() => <ProductForm />}
+      </Route>
+      <Route path="/admin/products/edit/:id">
+        {(params) => <ProductForm productId={params.id} />}
+      </Route>
+
+      {/* Public Routes - With Navigation/Footer */}
+      <Route>
+        {() => (
+          <>
+            <Navigation />
+            <Switch>
+              <Route path="/" component={Home} />
+              <Route path="/oem-odm" component={OemOdm} />
+              <Route path="/classroom" component={Classroom} />
+              <Route path="/capabilities" component={Capabilities} />
+              <Route path="/product-library" component={ProductLibrary} />
+              <Route path="/about" component={About} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/404" component={NotFound} />
+              <Route component={NotFound} />
+            </Switch>
+            <Footer />
+          </>
+        )}
+      </Route>
+    </Switch>
   );
 }
 
