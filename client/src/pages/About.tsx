@@ -39,9 +39,13 @@ export default function About() {
             </div>
             <div>
               <h2 className="text-4xl font-bold mb-6">{t.about.journey.title}</h2>
-              <p className="text-lg text-foreground/70 leading-relaxed">
-                {t.about.journey.description}
-              </p>
+              <div className="space-y-4">
+                {t.about.journey.description.split('\n\n').map((paragraph, i) => (
+                  <p key={i} className="text-lg text-foreground/70 leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>

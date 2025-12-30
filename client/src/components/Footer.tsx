@@ -15,6 +15,7 @@ export default function Footer() {
     { href: '/oem-odm', label: t.nav.oemOdm },
     { href: '/classroom', label: t.nav.classroom },
     { href: '/capabilities', label: t.nav.capabilities },
+    { href: '/product-library', label: t.nav.productLibrary },
     { href: '/about', label: t.nav.about },
     { href: '/contact', label: t.nav.contact },
   ];

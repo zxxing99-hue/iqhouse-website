@@ -13,6 +13,7 @@ export interface Translations {
     oemOdm: string;
     classroom: string;
     capabilities: string;
+    productLibrary: string;
     about: string;
     contact: string;
   };
@@ -237,6 +238,25 @@ export interface Translations {
     };
   };
   
+  // Product Library page
+  productLibrary: {
+    hero: {
+      title: string;
+      subtitle: string;
+    };
+    categories: {
+      language: { title: string; description: string; examples: string[] };
+      math: { title: string; description: string; examples: string[] };
+      spatial: { title: string; description: string; examples: string[] };
+      'hands-on': { title: string; description: string; examples: string[] };
+      'multi-skill': { title: string; description: string; examples: string[] };
+    };
+    cta: {
+      title: string;
+      description: string;
+    };
+  };
+  
   // Contact page
   contact: {
     hero: {
@@ -281,6 +301,7 @@ export const translations: Record<Language, Translations> = {
       oemOdm: 'OEM & ODM',
       classroom: 'From Classroom to Toy Design',
       capabilities: 'Learning Capabilities',
+      productLibrary: 'Product Library',
       about: 'About',
       contact: 'Contact',
     },
@@ -476,7 +497,7 @@ export const translations: Record<Language, Translations> = {
       },
       journey: {
         title: 'Our Background',
-        description: 'IQHouse has experience rooted in children\'s education and learning products. We transitioned from children\'s publishing to educational toy design after recognizing that children learn most effectively through hands-on exploration, not explanation alone.',
+        description: "IQHouse's experience in educational products did not begin with manufacturing.\n\nThe company originally worked in children's publishing, where we closely observed how children respond to information, language, and learning materials.\n\nOver time, it became clear that explanation alone is often ineffective for young learners. Children understand best when concepts are experienced through physical interaction and repeated exploration.\n\nThis insight led IQHouse to gradually transition from publishing to educational toy design — focusing on creating hands-on learning tools that support real understanding rather than memorization.",
       },
       difference: {
         title: 'Our Approach',
@@ -492,6 +513,43 @@ export const translations: Record<Language, Translations> = {
       vision: {
         title: 'Our Role',
         description: 'IQHouse works as a design and development partner for educational brands. Our goal is to help brands create learning experiences that truly matter.',
+      },
+    },
+    productLibrary: {
+      hero: {
+        title: 'Product Library',
+        subtitle: 'Explore our design categories organized by learning approach, not by SKU.',
+      },
+      categories: {
+        language: {
+          title: 'Language Learning Toys',
+          description: 'Tools designed to support language acquisition through interactive, multi-sensory engagement.',
+          examples: ['Reading pens with audio-visual integration', 'Phonics and vocabulary building sets', 'Bilingual learning materials'],
+        },
+        math: {
+          title: 'Math & Logic Toys',
+          description: 'Products that build number sense, pattern recognition, and logical thinking through hands-on manipulation.',
+          examples: ['Magnetic counting tools', 'Sorting and sequencing games', 'Early arithmetic manipulatives'],
+        },
+        spatial: {
+          title: 'Spatial & Construction Toys',
+          description: 'Designs that develop three-dimensional thinking and spatial awareness.',
+          examples: ['Building block systems', 'Geometric puzzle sets', '3D assembly challenges'],
+        },
+        'hands-on': {
+          title: 'Hands-on Learning Sets',
+          description: 'Multi-component kits that translate abstract concepts into tangible, exploratory experiences.',
+          examples: ['Science experiment kits', 'Art and craft learning tools', 'Sensory exploration sets'],
+        },
+        'multi-skill': {
+          title: 'Multi-skill Play Systems',
+          description: 'Integrated play experiences that engage multiple learning capabilities simultaneously.',
+          examples: ['Role-play and social interaction sets', 'Cooperative board games', 'Multi-sensory activity stations'],
+        },
+      },
+      cta: {
+        title: 'Detailed product information is available upon request.',
+        description: 'Contact us to discuss specific product specifications, customization options, and OEM/ODM opportunities.',
       },
     },
     contact: {
@@ -533,6 +591,7 @@ export const translations: Record<Language, Translations> = {
       oemOdm: 'OEM & ODM',
       classroom: '从课堂到玩具设计',
       capabilities: '学习能力体系',
+      productLibrary: '产品库',
       about: '关于我们',
       contact: '联系我们',
     },
@@ -728,7 +787,7 @@ export const translations: Record<Language, Translations> = {
       },
       journey: {
         title: '我们的背景',
-        description: 'IQHouse 拥有儿童教育和学习产品方面的经验。在认识到儿童通过动手探索而非单纯解释学习最有效后,我们从儿童出版转型到教具设计。',
+        description: 'IQHouse 与儿童学习相关的经验，并非始于制造。\n\n早期从事儿童出版过程中，我们持续观察孩子如何接收信息、理解语言，以及在不同形式的学习材料中产生反应。\n\n在长期实践中，我们逐渐认识到：对儿童而言，单纯的讲解往往难以建立真正的理解，而通过动手操作、反复体验，抽象概念才能被自然吸收。\n\n基于这一认知，IQHouse 逐步从出版领域转向教具与益智玩具的设计，专注于将学习内容转化为可触摸、可操作的实体体验。',
       },
       difference: {
         title: '我们的方法',
@@ -744,6 +803,43 @@ export const translations: Record<Language, Translations> = {
       vision: {
         title: '我们的角色',
         description: 'IQHouse 作为教育品牌的设计与研发合作伙伴。我们的目标是帮助品牌创造真正有意义的学习体验。',
+      },
+    },
+    productLibrary: {
+      hero: {
+        title: '产品库',
+        subtitle: '按学习方式组织的设计分类，而非产品型号。',
+      },
+      categories: {
+        language: {
+          title: '语言学习类玩具',
+          description: '通过互动、多感官参与支持语言习得的工具。',
+          examples: ['音视频集成点读笔', '拼读和词汇建设套装', '双语学习材料'],
+        },
+        math: {
+          title: '数学与逻辑玩具',
+          description: '通过动手操作培养数感、模式识别和逻辑思维的产品。',
+          examples: ['磁性计数工具', '分类和排序游戏', '早期算术操作工具'],
+        },
+        spatial: {
+          title: '空间与建构玩具',
+          description: '培养三维思维和空间意识的设计。',
+          examples: ['积木系统', '几何拼图套装', '三维组装挑战'],
+        },
+        'hands-on': {
+          title: '动手学习套装',
+          description: '将抽象概念转化为具体探索体验的多组件套装。',
+          examples: ['科学实验套装', '艺术和手工学习工具', '感官探索套装'],
+        },
+        'multi-skill': {
+          title: '多技能游戏系统',
+          description: '同时调动多种学习能力的综合游戏体验。',
+          examples: ['角色扮演和社交互动套装', '合作型桌游', '多感官活动站'],
+        },
+      },
+      cta: {
+        title: '详细产品信息可根据需求提供。',
+        description: '联系我们讨论具体产品规格、定制选项和OEM/ODM机会。',
       },
     },
     contact: {

@@ -35,6 +35,7 @@ export default function Navigation() {
     { href: '/oem-odm', label: t.nav.oemOdm },
     { href: '/classroom', label: t.nav.classroom },
     { href: '/capabilities', label: t.nav.capabilities },
+    { href: '/product-library', label: t.nav.productLibrary },
     { href: '/about', label: t.nav.about },
   ];
 
@@ -54,8 +55,12 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/">
-            <a className="text-2xl font-bold text-primary hover:opacity-80 transition-opacity">
-              IQHouse
+            <a className="flex items-center hover:opacity-80 transition-opacity">
+              <img 
+                src="/images/iqhouse-logo.png" 
+                alt="IQHouse Logo" 
+                className="h-12 w-auto"
+              />
             </a>
           </Link>
 
