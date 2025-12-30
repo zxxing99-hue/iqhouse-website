@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Linkedin, MessageSquare } from 'lucide-react';
+import { Mail, Linkedin, MessageSquare, Video } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -159,12 +159,20 @@ export default function Contact() {
                       <Mail className="w-5 h-5 text-primary" />
                       <div>
                         <p className="text-sm text-muted-foreground">{t.contact.info.emailLabel}</p>
-                        <a
-                          href="mailto:contact@iqhouse.com"
-                          className="text-foreground hover:text-primary transition-colors"
-                        >
-                          contact@iqhouse.com
-                        </a>
+                        <div className="space-y-1">
+                          <a
+                            href="mailto:andy@iqhousekids.com"
+                            className="text-foreground hover:text-primary transition-colors block"
+                          >
+                            andy@iqhousekids.com
+                          </a>
+                          <a
+                            href="mailto:iqhouse1989@gmail.com"
+                            className="text-sm text-muted-foreground hover:text-primary transition-colors block"
+                          >
+                            iqhouse1989@gmail.com
+                          </a>
+                        </div>
                       </div>
                     </div>
 
@@ -173,11 +181,12 @@ export default function Contact() {
                       <div>
                         <p className="text-sm text-muted-foreground">WhatsApp</p>
                         <a
-                          href="https://wa.me/"
+                          href="https://wa.me/447925192549"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-foreground hover:text-primary transition-colors"
                         >
+                          +44 7925 192549
                           WhatsApp
                         </a>
                       </div>
@@ -189,20 +198,22 @@ export default function Contact() {
                       </p>
                       <div className="flex gap-3">
                         <a
-                          href="https://linkedin.com"
+                          href="https://www.linkedin.com/in/iqhouse/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                          title="LinkedIn"
                         >
                           <Linkedin className="w-5 h-5" />
                         </a>
                         <a
-                          href="https://tiktok.com"
+                          href="https://www.tiktok.com/@iqhousekids"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                          title="TikTok"
                         >
-                          <MessageSquare className="w-5 h-5" />
+                          <Video className="w-5 h-5" />
                         </a>
                       </div>
                     </div>

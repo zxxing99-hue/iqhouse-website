@@ -227,6 +227,10 @@ export interface Translations {
       point3: string;
       point4: string;
     };
+    partners: {
+      title: string;
+      description: string;
+    };
     vision: {
       title: string;
       description: string;
@@ -481,6 +485,10 @@ export const translations: Record<Language, Translations> = {
         point3: 'Original gameplay concepts with design copyrights',
         point4: 'Stable OEM/ODM manufacturing for educational brands',
       },
+      partners: {
+        title: 'Trusted by Leading Brands',
+        description: 'We have supported educational brands including Disney, Hello Kitty, Noddy, and 巧虎 through OEM and ODM partnerships.',
+      },
       vision: {
         title: 'Our Role',
         description: 'IQHouse works as a design and development partner for educational brands. Our goal is to help brands create learning experiences that truly matter.',
@@ -728,6 +736,10 @@ export const translations: Record<Language, Translations> = {
         point2: '结构化的学习能力框架(12个能力)',
         point3: '拥有设计版权的原创玩法概念',
         point4: '为教育品牌提供稳定的OEM/ODM制造',
+      },
+      partners: {
+        title: '合作品牌',
+        description: '我们通过OEM和ODM合作为迪士尼、Hello Kitty、Noddy、巧虎等教育品牌提供支持。',
       },
       vision: {
         title: '我们的角色',

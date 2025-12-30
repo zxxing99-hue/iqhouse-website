@@ -5,7 +5,7 @@
 
 import { Link } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Linkedin, Mail } from 'lucide-react';
+import { Linkedin, Mail, MessageSquare, Video } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -56,20 +56,38 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:contact@iqhouse.com"
+                href="mailto:andy@iqhousekids.com"
                 className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                contact@iqhouse.com
+                andy@iqhousekids.com
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://wa.me/447925192549"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              >
+                <MessageSquare className="w-4 h-4" />
+                WhatsApp
+              </a>
+              <a
+                href="https://www.linkedin.com/in/iqhouse/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
               >
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
+              </a>
+              <a
+                href="https://www.tiktok.com/@iqhousekids"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              >
+                <Video className="w-4 h-4" />
+                TikTok
               </a>
             </div>
           </div>

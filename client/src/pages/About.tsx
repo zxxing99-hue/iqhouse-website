@@ -70,6 +70,26 @@ export default function About() {
         </div>
       </section>
 
+      {/* Trusted Partners Section */}
+      <section className="py-24">
+        <div className="container">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-4xl font-bold mb-6">{t.about.partners.title}</h2>
+            <p className="text-lg text-foreground/70">
+              {t.about.partners.description}
+            </p>
+          </div>
+          
+          <div className="max-w-5xl mx-auto">
+            <img
+              src="/images/brand-partners.webp"
+              alt="Brand Partners: Disney, Hello Kitty, Noddy, and more"
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Vision Section */}
       <section className="py-24 bg-primary text-primary-foreground diagonal-divider">
         <div className="container">
