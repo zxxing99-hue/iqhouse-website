@@ -42,3 +42,15 @@
 - [x] Display products by category with real data
 - [x] Support language filtering (EN/ZH)
 - [ ] Add product detail view - Can be added later if needed
+
+## Blog Frontend Display
+- [x] Create blog listing page (/insights)
+- [x] Create blog post detail page (/insights/:slug)
+- [x] Add Markdown rendering for blog content
+- [x] Support language filtering (EN/ZH)
+- [x] Add navigation link to Insights page
+
+## Sample Data
+- [x] Add 3-5 sample products covering different categories
+- [x] Add sample product images
+- [x] Add bilingual descriptions for products

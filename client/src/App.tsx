@@ -14,6 +14,8 @@ import Capabilities from "./pages/Capabilities";
 import ProductLibrary from "./pages/ProductLibrary";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Insights from "./pages/Insights";
+import InsightDetail from "./pages/InsightDetail";
 import AdminDashboard from "./pages/admin/Dashboard";
 import BlogList from "./pages/admin/BlogList";
 import BlogForm from "./pages/admin/BlogForm";
@@ -52,6 +54,10 @@ function Router() {
               <Route path="/product-library" component={ProductLibrary} />
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
+              <Route path="/insights" component={Insights} />
+              <Route path="/insights/:slug">
+                {(params) => <InsightDetail slug={params.slug} />}
+              </Route>
               <Route path="/404" component={NotFound} />
               <Route component={NotFound} />
             </Switch>

@@ -36,6 +36,7 @@ export default function Navigation() {
     { href: '/classroom', label: t.nav.classroom },
     { href: '/capabilities', label: t.nav.capabilities },
     { href: '/product-library', label: t.nav.productLibrary },
+    { href: '/insights', label: language === 'zh' ? '洞察' : 'Insights' },
     { href: '/about', label: t.nav.about },
   ];
 
