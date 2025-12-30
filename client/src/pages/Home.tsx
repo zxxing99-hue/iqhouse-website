@@ -8,12 +8,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'wouter';
 import { ArrowRight, Lightbulb, Package, Palette } from 'lucide-react';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   const { t } = useLanguage();
 
   return (
     <div className="min-h-screen">
+      <Navigation />
+      
       {/* Hero Section - Asymmetric layout with background image */}
       <section className="relative min-h-screen flex items-center pt-20">
         {/* Background Image */}
@@ -45,7 +49,7 @@ export default function Home() {
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
-                <Link href="/philosophy">
+                <Link href="/classroom">
                   <Button size="lg" variant="outline">
                     {t.home.hero.cta2}
                   </Button>
@@ -123,66 +127,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Design Philosophy Section - Image + Text */}
-      <section className="py-24 bg-card">
+      {/* Design Approach Section */}
+      <section className="py-24 bg-accent/5">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <img
-                src="/images/design-philosophy.png"
-                alt="Design Philosophy"
-                className="w-full h-auto rounded-lg shadow-2xl"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <span className="text-sm font-mono text-primary uppercase tracking-wider">03</span>
-              <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
-                {t.home.designPhilosophy.title}
-              </h2>
-              <p className="text-muted-foreground mb-8">{t.home.designPhilosophy.subtitle}</p>
-              <ul className="space-y-6">
-                {[
-                  t.home.designPhilosophy.principle1,
-                  t.home.designPhilosophy.principle2,
-                  t.home.designPhilosophy.principle3,
-                  t.home.designPhilosophy.principle4,
-                ].map((principle, i) => (
-                  <li key={i} className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-primary font-bold text-sm">{i + 1}</span>
-                    </div>
-                    <p className="text-foreground/80 leading-relaxed">{principle}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-mono text-primary uppercase tracking-wider">03</span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+              {t.home.designApproach.title}
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              {t.home.designApproach.subtitle}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              t.home.designApproach.principle1,
+              t.home.designApproach.principle2,
+              t.home.designApproach.principle3,
+            ].map((principle, i) => (
+              <div key={i} className="p-6 bg-background rounded-lg">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                  <span className="text-primary font-bold text-lg">{i + 1}</span>
+                </div>
+                <p className="text-foreground/80 leading-relaxed">{principle}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Who We Work With Section */}
+      {/* Learning Capabilities Section */}
       <section className="py-24">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-sm font-mono text-primary uppercase tracking-wider">04</span>
             <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
-              {t.home.whoWeWorkWith.title}
+              {t.home.capabilities.title}
             </h2>
+            <p className="text-lg text-muted-foreground">
+              {t.home.capabilities.description}
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              t.home.whoWeWorkWith.client1,
-              t.home.whoWeWorkWith.client2,
-              t.home.whoWeWorkWith.client3,
-            ].map((client, i) => (
-              <div key={i} className="text-center p-8">
-                <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-secondary">{i + 1}</span>
-                </div>
-                <p className="text-foreground/80 leading-relaxed">{client}</p>
-              </div>
-            ))}
+          <div className="text-center">
+            <Link href="/capabilities">
+              <Button size="lg" variant="outline" className="gap-2">
+                {t.home.capabilities.cta}
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -201,6 +195,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

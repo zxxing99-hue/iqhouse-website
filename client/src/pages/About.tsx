@@ -70,20 +70,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="py-24">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center">
-              {t.about.partners.title}
-            </h2>
-            <p className="text-lg text-foreground/70 leading-relaxed text-center">
-              {t.about.partners.description}
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Vision Section */}
       <section className="py-24 bg-primary text-primary-foreground diagonal-divider">
         <div className="container">

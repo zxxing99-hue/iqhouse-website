@@ -13,7 +13,8 @@ export default function Footer() {
   const quickLinks = [
     { href: '/', label: t.nav.home },
     { href: '/oem-odm', label: t.nav.oemOdm },
-    { href: '/philosophy', label: t.nav.philosophy },
+    { href: '/classroom', label: t.nav.classroom },
+    { href: '/capabilities', label: t.nav.capabilities },
     { href: '/about', label: t.nav.about },
     { href: '/contact', label: t.nav.contact },
   ];

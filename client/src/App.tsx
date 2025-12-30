@@ -9,8 +9,8 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import OemOdm from "./pages/OemOdm";
-import Philosophy from "./pages/Philosophy";
-import Blog from "./pages/Blog";
+import Classroom from './pages/Classroom';
+import Capabilities from './pages/Capabilities';
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
@@ -21,9 +21,8 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/oem-odm" component={OemOdm} />
-        <Route path="/philosophy" component={Philosophy} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/about" component={About} />
+        <Route path={"/classroom"} component={Classroom} />
+      <Route path={"/capabilities"} component={Capabilities} />       <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />

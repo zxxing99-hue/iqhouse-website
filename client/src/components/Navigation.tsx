@@ -33,8 +33,8 @@ export default function Navigation() {
   const navLinks = [
     { href: '/', label: t.nav.home },
     { href: '/oem-odm', label: t.nav.oemOdm },
-    { href: '/philosophy', label: t.nav.philosophy },
-    { href: '/blog', label: t.nav.blog },
+    { href: '/classroom', label: t.nav.classroom },
+    { href: '/capabilities', label: t.nav.capabilities },
     { href: '/about', label: t.nav.about },
   ];
 
