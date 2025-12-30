@@ -29,3 +29,16 @@
 ## UI Improvements
 - [x] Change admin interface language to Chinese
 - [x] Remove logo from admin layout
+
+## Image Upload Feature
+- [x] Create image upload API using S3 storage
+- [x] Create ImageUpload component
+- [x] Integrate image upload to blog post form (cover image)
+- [x] Integrate image upload to product form (product images)
+- [x] Support both URL input and file upload
+
+## Product Library Frontend Integration
+- [x] Update Product Library page to fetch data from backend
+- [x] Display products by category with real data
+- [x] Support language filtering (EN/ZH)
+- [ ] Add product detail view - Can be added later if needed

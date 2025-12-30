@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ImageUpload } from '@/components/ImageUpload';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { trpc } from '@/lib/trpc';
@@ -26,6 +27,7 @@ export default function ProductForm({ productId }: ProductFormProps) {
     description: '',
     descriptionZh: '',
     ageRange: '',
+    imageUrl: '',
     published: false,
   });
 
@@ -43,6 +45,7 @@ export default function ProductForm({ productId }: ProductFormProps) {
         description: product.description || '',
         descriptionZh: product.descriptionZh || '',
         ageRange: product.ageRange || '',
+        imageUrl: product.imageUrl || '',
         published: product.published === 1,
       });
     }
@@ -189,6 +192,12 @@ export default function ProductForm({ productId }: ProductFormProps) {
                   rows={4}
                 />
               </div>
+
+              <ImageUpload
+                label="产品图片"
+                value={formData.imageUrl}
+                onChange={(url) => setFormData(prev => ({ ...prev, imageUrl: url }))}
+              />
 
               <div className="flex items-center space-x-2">
                 <Switch

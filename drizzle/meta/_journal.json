@@ -15,6 +15,13 @@
       "when": 1767111196784,
       "tag": "0001_mixed_thunderbolts",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1767112876221,
+      "tag": "0002_soft_boom_boom",
+      "breakpoints": true
     }
   ]
 }

@@ -60,6 +60,7 @@ export const products = mysqlTable("products", {
   features: text("features"), // JSON array of feature strings
   featuresZh: text("featuresZh"),
   ageRange: varchar("ageRange", { length: 50 }),
+  imageUrl: text("imageUrl"),
   published: int("published").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
