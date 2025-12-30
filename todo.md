@@ -54,3 +54,12 @@
 - [x] Add 3-5 sample products covering different categories
 - [x] Add sample product images
 - [x] Add bilingual descriptions for products
+
+
+## UX Issues (Client Demo Preparation)
+- [x] Fix double footer on homepage
+- [x] Make 404 page more user-friendly with contact info (iqhouse1989@gmail.com)
+- [x] Check and optimize navigation/jump logic throughout site
+- [x] Review all pages from B2B client perspective
+- [x] Ensure clear value proposition on every page
+- [x] Test all links and CTAs

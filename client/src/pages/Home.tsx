@@ -8,15 +8,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'wouter';
 import { ArrowRight, Lightbulb, Package, Palette } from 'lucide-react';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+
 
 export default function Home() {
   const { t } = useLanguage();
 
   return (
     <div className="min-h-screen">
-      <Navigation />
       
       {/* Hero Section - Asymmetric layout with background image */}
       <section className="relative min-h-screen flex items-center pt-20">
@@ -195,8 +193,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }
