@@ -1,4 +1,4 @@
-/**
+/*
  * Design Philosophy: Swiss Modernism meets Scandinavian Minimalism
  * Home page - Asymmetric layouts, generous whitespace, natural imagery
  */
@@ -41,15 +41,15 @@ export default function Home() {
                 {t.home.hero.subheadline}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link href="/oem-odm">
+                <Link href="/contact">
                   <Button size="lg" className="bg-primary hover:bg-primary/90 gap-2">
-                    {t.home.hero.cta1}
+                    For Brands & Buyers
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
                 <Link href="/classroom">
                   <Button size="lg" variant="outline">
-                    {t.home.hero.cta2}
+                    Our Design Method
                   </Button>
                 </Link>
               </div>
@@ -112,15 +112,18 @@ export default function Home() {
                 title: t.home.whatWeOffer.service3Title,
                 desc: t.home.whatWeOffer.service3Desc,
               },
-            ].map((service, i) => (
-              <Card key={i} className="border-2 hover:border-primary transition-colors">
-                <CardContent className="p-8">
-                  <service.icon className="w-12 h-12 text-primary mb-6" />
-                  <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-                  <p className="text-foreground/70 leading-relaxed">{service.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
+            ].map((service, i) => {
+              const ServiceIcon = service.icon;
+              return (
+                <Card key={i} className="border-2 hover:border-primary transition-colors">
+                  <CardContent className="p-8">
+                    <ServiceIcon className="w-12 h-12 text-primary mb-6" />
+                    <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+                    <p className="text-foreground/70 leading-relaxed">{service.desc}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -155,23 +158,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Learning Capabilities Section */}
-      <section className="py-24">
+      {/* Learning Capabilities Section - Simplified with featured icons */}
+      <section className="py-24 bg-card">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-sm font-mono text-primary uppercase tracking-wider">04</span>
             <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
-              {t.home.capabilities.title}
+              Learning Capabilities Framework
             </h2>
-            <p className="text-lg text-muted-foreground">
-              {t.home.capabilities.description}
-            </p>
           </div>
 
+          {/* Featured Capabilities - 4 representative icons */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            {[
+              { emoji: '👁️', label: 'Observation' },
+              { emoji: '🧠', label: 'Reasoning' },
+              { emoji: '🎨', label: 'Creativity' },
+              { emoji: '🤝', label: 'Social Skills' },
+            ].map((capability, i) => (
+              <div key={i} className="text-center p-6 bg-background rounded-lg hover:shadow-md transition-shadow">
+                <div className="text-5xl mb-4">{capability.emoji}</div>
+                <p className="text-sm font-medium text-foreground/80">{capability.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Summary and CTA */}
           <div className="text-center">
+            <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto">
+              Every toy we design targets one or more foundational learning capabilities that screens and automation cannot replicate.
+            </p>
             <Link href="/capabilities">
-              <Button size="lg" variant="outline" className="gap-2">
-                {t.home.capabilities.cta}
+              <Button size="lg" variant="default" className="gap-2">
+                View all learning capabilities
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
@@ -179,18 +198,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-24 bg-primary text-primary-foreground diagonal-divider">
+      {/* Final CTA Section - Role-specific CTAs */}
+      <section className="py-24 bg-primary text-primary-foreground">
         <div className="container text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 max-w-3xl mx-auto">
             {t.home.finalCta.title}
           </h2>
-          <Link href="/contact">
-            <Button size="lg" variant="secondary" className="gap-2">
-              {t.home.finalCta.button}
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contact">
+              <Button size="lg" variant="secondary" className="gap-2">
+                For Brands & Buyers
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+            <Link href="/classroom">
+              <Button size="lg" className="gap-2 bg-primary-foreground/20 hover:bg-primary-foreground/30 text-primary-foreground">
+                Our Design Method
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

@@ -63,3 +63,26 @@
 - [x] Review all pages from B2B client perspective
 - [x] Ensure clear value proposition on every page
 - [x] Test all links and CTAs
+
+
+## Homepage Optimization (User Feedback)
+- [x] Simplify Learning Capabilities section to show 3-4 representative icons only
+- [x] Add "View all learning capabilities" CTA button
+- [x] Replace generic "Start a Conversation" with two role-specific CTAs:
+  - "For Brands & Buyers → Contact"
+  - "Our Design Method → Classroom to Toy Design"
+- [x] Add role-specific CTAs in hero section and final CTA section
+
+## Blog Content Strategy
+- [x] Create content guidelines document (3 article types only)
+- [x] Type 1: How learning concepts become physical toys
+- [x] Type 2: OEM vs ODM: what brands should consider
+- [x] Type 3: Why hands-on learning still matters
+- [x] Avoid: parenting content, age groups, "how to play with kids"
+- [x] Created BLOG_CONTENT_STRATEGY.md with detailed guidelines
+
+## Learning Capabilities Icon Management
+- [ ] Create admin panel for managing 12 learning capability icons
+- [ ] Allow uploading custom icons for each capability
+- [ ] Display selected icons on homepage (3-4 featured)
+- [ ] Link to full 12 capabilities page
