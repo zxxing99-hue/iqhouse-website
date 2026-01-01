@@ -1,8 +1,0 @@
-{
-  "query": "SELECT id, title_en, title_zh, category, image_url FROM products ORDER BY created_at;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4Ybh9awF2LDtWae.root --database ZQAV5yXXt8SNUsBvXSc9j2 --execute SELECT id, title_en, title_zh, category, image_url FROM products ORDER BY created_at;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'created_at' in 'order clause'"
-  ]
-}

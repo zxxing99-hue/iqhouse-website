@@ -89,9 +89,14 @@
 
 
 ## Methodology 2.0 Implementation
-- [x] Replace sample product images with real product and store photos
-- [x] Add "Optimizing Learning Complexity Through Design" module to Classroom page
-- [x] Update Classroom page title to "From Observation to Structured Learning Design"
-- [x] Add summary sentence to design complexity section
-- [x] Add key sentence to Home page "Our Design Approach" section
-- [x] Add opening sentence to Learning Capabilities page
+- [ ] Replace sample product images with real product and store photos
+- [ ] Add "Optimizing Learning Complexity Through Design" module to Classroom page
+- [ ] Update Classroom page title to "From Observation to Structured Learning Design"
+- [ ] Add summary sentence to design complexity section
+- [ ] Add key sentence to Home page "Our Design Approach" section
+- [ ] Add opening sentence to Learning Capabilities page
+
+## Client Feedback - January 2025
+- [x] Add "Designing Learning Complexity" module to Classroom page (Tangram example)
+- [x] Fix navigation links auto-redirecting to login (Product Library, Insights, About should be public)
+- [x] Fix duplicate footer on Classroom and Learning Capabilities pages

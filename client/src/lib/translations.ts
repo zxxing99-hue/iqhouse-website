@@ -112,11 +112,12 @@ export interface Translations {
       title: string;
       p1: string;
       p2: string;
+      p3: string;
+      p4: string;
       point1: string;
       point2: string;
       point3: string;
-      p3: string;
-      summary: string;
+      p5: string;
     };
     section5: {
       title: string;
@@ -340,7 +341,7 @@ export const translations: Record<Language, Translations> = {
       },
       designApproach: {
         title: 'Our Design Approach',
-        subtitle: 'We don\'t just observe how children learn — we design to optimize learning complexity',
+        subtitle: 'From classroom observation to hands-on learning',
         principle1: 'Children learn by touching, trying, and discovering patterns through play',
         principle2: 'Physical interaction transforms abstract concepts into real understanding',
         principle3: 'Toys designed for specific developmental stages, not one-size-fits-all',
@@ -358,7 +359,7 @@ export const translations: Record<Language, Translations> = {
     classroom: {
       hero: {
         title: 'From Classroom to Toy Design',
-        subtitle: 'From Observation to Structured Learning Design',
+        subtitle: 'Our design methodology based on real learning behavior',
       },
       section1: {
         title: 'Our Design Starting Point',
@@ -379,6 +380,17 @@ export const translations: Record<Language, Translations> = {
         point3: 'How rules remain simple while learning depth increases',
         p3: 'A concept that is difficult to explain verbally can often be understood instantly when experienced through hands-on interaction.',
       },
+      section4Optimizing: {
+        title: 'Designing Learning Complexity',
+        p1: 'Children do not struggle because they lack ability. They struggle when complexity is introduced too early.',
+        p2: 'Traditional tangram sets often present all pieces at once, assuming children can process multiple variables simultaneously.',
+        p3: 'Our approach reframes complexity as a learning journey. Instead of starting with all pieces, we introduce staged challenges:',
+        p4: 'When difficulty aligns with developmental readiness, complexity becomes motivation rather than frustration.',
+        point1: '4-piece compositions to establish basic spatial recognition',
+        point2: '5-6 piece stages to build confidence and pattern awareness',
+        point3: 'Full 7-piece challenges only after core logic is internalized',
+        p5: 'This is how we design toys that grow with children, not against them.',
+      },
       section3: {
         title: 'A Method, Not a Trend',
         p1: 'Our approach is not driven by trends or visual appeal alone.',
@@ -391,16 +403,6 @@ export const translations: Record<Language, Translations> = {
         result1: 'Intuitive to play',
         result2: 'Meaningful to learn from',
         result3: 'Sustainable in long-term educational value',
-      },
-      section4Optimizing: {
-        title: 'Optimizing Learning Complexity Through Design',
-        p1: 'Many traditional educational toys contain strong learning value, but are often cognitively demanding for young children.',
-        p2: 'Instead of simplifying learning goals, IQHouse focuses on restructuring learning complexity.',
-        point1: 'The number of elements introduced at early stages',
-        point2: 'The level of visual guidance provided',
-        point3: 'The progression of difficulty across play stages',
-        p3: 'This allows children to experience early success, build confidence, and gradually develop deeper understanding through hands-on interaction.',
-        summary: 'We align learning difficulty with how children naturally understand and progress.',
       },
       section4: {
         title: 'Why Physical Play Still Matters',
@@ -640,10 +642,10 @@ export const translations: Record<Language, Translations> = {
       },
       designApproach: {
         title: '我们的设计方法',
-        subtitle: '我们不仅观察孩子如何学习 — 我们设计优化学习复杂度',
-        principle1: '孩子通过触摸、尝试和发现游戏中的规律来学习',
-        principle2: '实体互动将抽象概念转化为真实的理解',
-        principle3: '为特定发展阶段设计的玩具，而不是一套适用于所有人',
+        subtitle: '从课堂观察到动手学习',
+        principle1: '孩子通过触摸、尝试和在游戏中发现规律来学习',
+        principle2: '实体互动将抽象概念转化为真实理解',
+        principle3: '针对特定发展阶段设计的玩具,而非通用型',
       },
       capabilities: {
         title: '学习能力框架',
@@ -658,7 +660,7 @@ export const translations: Record<Language, Translations> = {
     classroom: {
       hero: {
         title: '从真实课堂到玩具设计',
-        subtitle: '从观察到结构化学习设计',
+        subtitle: '基于真实学习行为的设计方法论',
       },
       section1: {
         title: '我们的设计起点',
@@ -679,6 +681,17 @@ export const translations: Record<Language, Translations> = {
         point3: '如何在规则简单的前提下,提供足够的学习深度',
         p3: '很多抽象概念,无法通过语言讲清楚,却可以通过玩具被"瞬间理解"。',
       },
+      section4Optimizing: {
+        title: '设计学习复杂度',
+        p1: '孩子的困难,不是因为能力不足。真正的困难,来自复杂度引入得太早。',
+        p2: '传统七巧板通常一次性呈现所有碎片,假设孩子能同时处理多个变量。',
+        p3: '我们的做法,是把复杂度重新定义为一段学习之旅。不是从全部碎片开始,而是分阶段引入挑战:',
+        p4: '当难度与发展阶段相匹配时,复杂度就变成了动力,而不是挫折。',
+        point1: '4块碎片的组合,建立基础空间认知',
+        point2: '5-6块阶段,建立信心与图案认知',
+        point3: '完整7块挑战,仅在核心逻辑已内化后呈现',
+        p5: '这就是我们如何设计能与孩子一起成长的玩具,而不是与他们对抗。',
+      },
       section3: {
         title: '这是一种方法,而不是潮流',
         p1: 'IQHouse 的设计并非跟随流行趋势,也不以外观为导向。',
@@ -691,16 +704,6 @@ export const translations: Record<Language, Translations> = {
         result1: '直观易玩',
         result2: '有意义的学习',
         result3: '可持续的教育价值',
-      },
-      section4Optimizing: {
-        title: '通过设计优化学习复杂度',
-        p1: '许多传统教具本身具备良好的学习价值，但在认知层面对幼龄儿童而言往往具有较高门槛。',
-        p2: 'IQHouse 并非降低学习目标，而是重新结构学习复杂度。',
-        point1: '早期阶段引入的元素数量',
-        point2: '视觉引导与提示方式',
-        point3: '游戏过程中难度的递进节奏',
-        p3: '通过这种方式，孩子可以在获得初始成功的同时建立信心，并在动手操作中逐步形成更深入的理解。',
-        summary: '我们通过结构化设计，让学习难度与孩子的理解路径保持一致。',
       },
       section4: {
         title: '为什么实体玩具仍然重要',

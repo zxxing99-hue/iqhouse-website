@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { protectedProcedure, router } from "../_core/trpc";
+import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
 import { TRPCError } from "@trpc/server";
 import * as db from "../db";
 
@@ -13,7 +13,7 @@ const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
 const categoryEnum = z.enum(["language", "math", "spatial", "hands-on", "multi-skill"]);
 
 export const productsRouter = router({
-  list: protectedProcedure
+  list: publicProcedure
     .input(z.object({
       category: categoryEnum.optional(),
       publishedOnly: z.boolean().default(false),
@@ -22,7 +22,7 @@ export const productsRouter = router({
       return await db.getAllProducts(input.category, input.publishedOnly);
     }),
 
-  getById: protectedProcedure
+  getById: publicProcedure
     .input(z.object({ id: z.number() }))
     .query(async ({ input }) => {
       const product = await db.getProductById(input.id);

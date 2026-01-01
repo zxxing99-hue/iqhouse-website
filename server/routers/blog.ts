@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { protectedProcedure, router } from "../_core/trpc";
+import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
 import { TRPCError } from "@trpc/server";
 import * as db from "../db";
 
@@ -11,7 +11,7 @@ const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
 });
 
 export const blogRouter = router({
-  list: protectedProcedure
+  list: publicProcedure
     .input(z.object({
       language: z.enum(['en', 'zh']).optional(),
       publishedOnly: z.boolean().default(false),
@@ -20,7 +20,7 @@ export const blogRouter = router({
       return await db.getAllPosts(input.language, input.publishedOnly);
     }),
 
-  getById: protectedProcedure
+  getById: publicProcedure
     .input(z.object({ id: z.number() }))
     .query(async ({ input }) => {
       const post = await db.getPostById(input.id);
@@ -30,7 +30,7 @@ export const blogRouter = router({
       return post;
     }),
 
-  getBySlug: protectedProcedure
+  getBySlug: publicProcedure
     .input(z.object({ slug: z.string() }))
     .query(async ({ input }) => {
       const post = await db.getPostBySlug(input.slug);
