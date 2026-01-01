@@ -25,7 +25,7 @@ import {
 } from 'lucide-react';
 
 export default function Capabilities() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const capabilities = [
     { icon: Eye, title: t.capabilities.cap1.title, desc: t.capabilities.cap1.desc },
@@ -55,6 +55,19 @@ export default function Capabilities() {
             </h1>
             <p className="text-xl text-muted-foreground">
               {t.capabilities.hero.subtitle}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Opening Statement Section */}
+      <section className="py-16 bg-background border-b border-border">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <p className="text-lg text-foreground/80 leading-relaxed text-center">
+              {language === 'en'
+                ? 'Learning capabilities develop through design structures aligned with how children understand. Each toy we create targets specific foundational abilities that cannot be replicated by screens or automation.'
+                : '学习能力通过与孩子理解方式相一致的设计结构而发展。我们创造的每一款玩具都针对特定的基础能力,这些能力是屏幕和自动化无法复制的。'}
             </p>
           </div>
         </div>

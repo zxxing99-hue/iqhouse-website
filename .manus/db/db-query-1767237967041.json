@@ -1,0 +1,45 @@
+{
+  "query": "SELECT id, name, nameZh, category, imageUrl FROM products;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4Ybh9awF2LDtWae.root --database ZQAV5yXXt8SNUsBvXSc9j2 --execute SELECT id, name, nameZh, category, imageUrl FROM products;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Reading Pen Learning System",
+      "nameZh": "点读笔学习系统",
+      "category": "language",
+      "imageUrl": "/images/reading-pen-usage.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Magnetic Foam Number Set",
+      "nameZh": "磁性泡棉数字套装",
+      "category": "math",
+      "imageUrl": "/images/store-photo-1.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Wooden Puzzle Collection",
+      "nameZh": "木质拼图系列",
+      "category": "spatial",
+      "imageUrl": "/images/store-photo-2.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Companion Play Game Set",
+      "nameZh": "陪伴系列游戏套装",
+      "category": "hands-on",
+      "imageUrl": "/images/students-group.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Multi-Skill Learning Board",
+      "nameZh": "综合能力学习板",
+      "category": "multi-skill",
+      "imageUrl": "/images/students-playground.jpg"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tnameZh\tcategory\timageUrl\n1\tReading Pen Learning System\t点读笔学习系统\tlanguage\t/images/reading-pen-usage.jpg\n2\tMagnetic Foam Number Set\t磁性泡棉数字套装\tmath\t/images/store-photo-1.jpg\n3\tWooden Puzzle Collection\t木质拼图系列\tspatial\t/images/store-photo-2.jpg\n4\tCompanion Play Game Set\t陪伴系列游戏套装\thands-on\t/images/students-group.jpg\n5\tMulti-Skill Learning Board\t综合能力学习板\tmulti-skill\t/images/students-playground.jpg\n",
+  "stderr": "",
+  "execution_time_ms": 191
+}

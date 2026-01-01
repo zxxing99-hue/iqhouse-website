@@ -86,3 +86,12 @@
 - [ ] Allow uploading custom icons for each capability
 - [ ] Display selected icons on homepage (3-4 featured)
 - [ ] Link to full 12 capabilities page
+
+
+## Methodology 2.0 Implementation
+- [x] Replace sample product images with real product and store photos
+- [x] Add "Optimizing Learning Complexity Through Design" module to Classroom page
+- [x] Update Classroom page title to "From Observation to Structured Learning Design"
+- [x] Add summary sentence to design complexity section
+- [x] Add key sentence to Home page "Our Design Approach" section
+- [x] Add opening sentence to Learning Capabilities page
