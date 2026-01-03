@@ -100,3 +100,9 @@
 - [x] Add "Designing Learning Complexity" module to Classroom page (Tangram example)
 - [x] Fix navigation links auto-redirecting to login (Product Library, Insights, About should be public)
 - [x] Fix duplicate footer on Classroom and Learning Capabilities pages
+
+## WeChat Enterprise Integration
+- [x] Extend Contact form with Country and Company fields
+- [x] Create backend API to handle message submission and WeChat push
+- [x] Add webhook URL configuration in admin dashboard
+- [x] Test WeChat Enterprise webhook integration

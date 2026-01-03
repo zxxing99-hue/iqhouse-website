@@ -68,3 +68,32 @@ export const products = mysqlTable("products", {
 
 export type Product = typeof products.$inferSelect;
 export type InsertProduct = typeof products.$inferInsert;
+/**
+ * Contact messages table for storing form submissions
+ */
+export const messages = mysqlTable("messages", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  company: varchar("company", { length: 255 }).notNull(),
+  country: varchar("country", { length: 255 }).notNull(),
+  message: text("message").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Message = typeof messages.$inferSelect;
+export type InsertMessage = typeof messages.$inferInsert;
+
+/**
+ * Settings table for storing configuration (webhook URL, etc.)
+ */
+export const settings = mysqlTable("settings", {
+  id: int("id").autoincrement().primaryKey(),
+  key: varchar("key", { length: 255 }).notNull().unique(),
+  value: text("value").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Setting = typeof settings.$inferSelect;
+export type InsertSetting = typeof settings.$inferInsert;

@@ -11,6 +11,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Linkedin, MessageSquare, Video } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { trpc } from '@/lib/trpc';
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -23,16 +24,29 @@ export default function Contact() {
     message: '',
   });
 
+  const submitMessage = trpc.messages.submit.useMutation();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await submitMessage.mutateAsync({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        country: formData.country,
+        message: formData.message,
+      });
+      
       toast.success(t.contact.form.success);
       setFormData({ name: '', email: '', company: '', country: '', message: '' });
-    }, 1500);
+    } catch (error) {
+      console.error('Error submitting message:', error);
+      toast.error('Failed to submit message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (

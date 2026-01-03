@@ -1,6 +1,6 @@
 import { eq, desc, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, posts, InsertPost, products, InsertProduct } from "../drizzle/schema";
+import { InsertUser, users, posts, InsertPost, products, InsertProduct, messages, InsertMessage, settings, InsertSetting } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -199,4 +199,50 @@ export async function deleteProduct(id: number) {
   if (!db) throw new Error("Database not available");
 
   await db.delete(products).where(eq(products.id, id));
+}
+
+// Messages Functions
+export async function createMessage(message: InsertMessage) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.insert(messages).values(message);
+  return result;
+}
+
+export async function getAllMessages() {
+  const db = await getDb();
+  if (!db) return [];
+
+  const result = await db.select().from(messages).orderBy(desc(messages.createdAt));
+  return result;
+}
+
+// Settings Functions
+export async function getSetting(key: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(settings).where(eq(settings.key, key)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function setSetting(key: string, value: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const existing = await getSetting(key);
+  if (existing) {
+    await db.update(settings).set({ value }).where(eq(settings.key, key));
+  } else {
+    await db.insert(settings).values({ key, value });
+  }
+}
+
+export async function getAllSettings() {
+  const db = await getDb();
+  if (!db) return [];
+
+  const result = await db.select().from(settings);
+  return result;
 }

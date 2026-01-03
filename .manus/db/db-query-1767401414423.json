@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO settings (`key`, value, createdAt, updatedAt) VALUES ('wechat_webhook_url', 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=85305edf-c454-4fb3-82e2-8793bd0de22c', NOW(), NOW()) ON DUPLICATE KEY UPDATE value = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=85305edf-c454-4fb3-82e2-8793bd0de22c', updatedAt = NOW()",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 4Ybh9awF2LDtWae.root --database ZQAV5yXXt8SNUsBvXSc9j2 --execute INSERT INTO settings (`key`, value, createdAt, updatedAt) VALUES ('wechat_webhook_url', 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=85305edf-c454-4fb3-82e2-8793bd0de22c', NOW(), NOW()) ON DUPLICATE KEY UPDATE value = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=85305edf-c454-4fb3-82e2-8793bd0de22c', updatedAt = NOW()",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 155
+}
