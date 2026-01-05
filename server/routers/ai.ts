@@ -9,8 +9,8 @@ const XUNFEI_API_SECRET = process.env.XUNFEI_API_SECRET || "MGRhZmVkZjdjYzkzZmM5
 const XUNFEI_ASSISTANT_ID = "k81niq6r2sg4_v1";
 const XUNFEI_WS_URL = "wss://spark-openapi.cn-huabei-1.xf-yun.com/v1/assistants/k81niq6r2sg4_v1";
 
-// Store active WebSocket connections per session
-const activeConnections = new Map<string, WebSocket>();
+// Store active connections per session
+const sessionConnections = new Map<string, { ws: WebSocket; lastActivity: number }>();
 
 function generateAuthHeader(): { url: string; headers: Record<string, string> } {
   const timestamp = Math.floor(Date.now() / 1000).toString();
@@ -32,8 +32,47 @@ function generateAuthHeader(): { url: string; headers: Record<string, string> } 
   };
 }
 
+async function createXunfeiConnection(sessionId: string): Promise<WebSocket> {
+  return new Promise((resolve, reject) => {
+    try {
+      const { url, headers } = generateAuthHeader();
+
+      const ws = new WebSocket(url, {
+        headers: {
+          Authorization: headers.Authorization,
+          Date: headers.Date,
+        },
+      });
+
+      const timeout = setTimeout(() => {
+        ws.close();
+        reject(new Error("Connection timeout"));
+      }, 5000);
+
+      ws.onopen = () => {
+        clearTimeout(timeout);
+        console.log(`[${sessionId}] Connected to Xunfei API`);
+        resolve(ws);
+      };
+
+      ws.onerror = (error: any) => {
+        clearTimeout(timeout);
+        console.error(`[${sessionId}] WebSocket error:`, error);
+        reject(new Error("Failed to connect to Xunfei API"));
+      };
+
+      ws.onclose = () => {
+        console.log(`[${sessionId}] Disconnected from Xunfei API`);
+        sessionConnections.delete(sessionId);
+      };
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 export const aiRouter = router({
-  // Initialize WebSocket connection
+  // Initialize connection
   connect: publicProcedure
     .input(z.object({ sessionId: z.string() }))
     .mutation(async ({ input }) => {
@@ -41,23 +80,19 @@ export const aiRouter = router({
         const { sessionId } = input;
 
         // Close existing connection if any
-        const existingWs = activeConnections.get(sessionId);
-        if (existingWs) {
-          existingWs.close();
+        const existing = sessionConnections.get(sessionId);
+        if (existing) {
+          existing.ws.close();
         }
 
-        const { url, headers } = generateAuthHeader();
-
-        // Create new WebSocket connection
-        const ws = new WebSocket(url, {
-          headers: {
-            Authorization: headers.Authorization,
-            Date: headers.Date,
-          },
-        });
+        // Create new connection
+        const ws = await createXunfeiConnection(sessionId);
 
         // Store connection
-        activeConnections.set(sessionId, ws);
+        sessionConnections.set(sessionId, {
+          ws,
+          lastActivity: Date.now(),
+        });
 
         return {
           success: true,
@@ -73,7 +108,7 @@ export const aiRouter = router({
       }
     }),
 
-  // Send message through WebSocket
+  // Send message
   sendMessage: publicProcedure
     .input(
       z.object({
@@ -84,16 +119,21 @@ export const aiRouter = router({
     .mutation(async ({ input }) => {
       try {
         const { sessionId, message } = input;
-        const ws = activeConnections.get(sessionId);
 
-        if (!ws || ws.readyState !== WebSocket.OPEN) {
-          throw new TRPCError({
-            code: "BAD_REQUEST",
-            message: "WebSocket connection not established",
-          });
+        // Get or create connection
+        let connection = sessionConnections.get(sessionId);
+        
+        if (!connection || connection.ws.readyState !== WebSocket.OPEN) {
+          console.log(`[${sessionId}] Creating new connection...`);
+          const ws = await createXunfeiConnection(sessionId);
+          connection = { ws, lastActivity: Date.now() };
+          sessionConnections.set(sessionId, connection);
         }
 
-        // Prepare message in Xunfei format
+        // Update last activity
+        connection.lastActivity = Date.now();
+
+        // Prepare message
         const xunfeiMessage = {
           header: {
             app_id: XUNFEI_ASSISTANT_ID,
@@ -117,33 +157,61 @@ export const aiRouter = router({
           },
         };
 
-        // Send message
-        ws.send(JSON.stringify(xunfeiMessage));
+        console.log(`[${sessionId}] Sending message:`, message);
 
-        return {
-          success: true,
-          message: "Message sent",
-        };
+        // Send message
+        connection.ws.send(JSON.stringify(xunfeiMessage));
+
+        // Wait for response with timeout
+        return new Promise((resolve, reject) => {
+          const timeout = setTimeout(() => {
+            reject(new Error("Response timeout"));
+          }, 10000);
+
+          const onMessage = (event: any) => {
+            try {
+              clearTimeout(timeout);
+              const response = JSON.parse(event.data);
+              console.log(`[${sessionId}] Received response:`, response);
+
+              // Remove listener
+              connection!.ws.removeEventListener("message", onMessage);
+
+              resolve({
+                success: true,
+                message: "Message sent successfully",
+                response,
+              });
+            } catch (error) {
+              clearTimeout(timeout);
+              console.error(`[${sessionId}] Error parsing response:`, error);
+              connection!.ws.removeEventListener("message", onMessage);
+              reject(error);
+            }
+          };
+
+          connection!.ws.addEventListener("message", onMessage);
+        });
       } catch (error) {
         console.error("Error sending message:", error);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Failed to send message",
+          message: error instanceof Error ? error.message : "Failed to send message",
         });
       }
     }),
 
-  // Disconnect WebSocket
+  // Disconnect
   disconnect: publicProcedure
     .input(z.object({ sessionId: z.string() }))
     .mutation(async ({ input }) => {
       try {
         const { sessionId } = input;
-        const ws = activeConnections.get(sessionId);
+        const connection = sessionConnections.get(sessionId);
 
-        if (ws) {
-          ws.close();
-          activeConnections.delete(sessionId);
+        if (connection) {
+          connection.ws.close();
+          sessionConnections.delete(sessionId);
         }
 
         return {
@@ -166,6 +234,7 @@ export const aiRouter = router({
         success: true,
         message: "AI service is available",
         apiKeyConfigured: !!XUNFEI_API_KEY,
+        activeConnections: sessionConnections.size,
       };
     } catch (error) {
       throw new TRPCError({

@@ -120,3 +120,9 @@
 - [x] Fix authentication and message format issues
 - [x] Update frontend to use backend proxy
 - [ ] Complete Xunfei API streaming response integration (requires WebSocket server setup)
+
+
+## AI Chat Assistant - Debugging
+- [x] Check backend error logs and API responses
+- [x] Fix sendMessage mutation error handling
+- [x] Test message sending and receiving

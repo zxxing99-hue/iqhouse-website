@@ -41,6 +41,10 @@ export function AIChatSidebar() {
     }
   }, [messages]);
 
+  // Use trpc mutation for connecting
+  const connectMutation = trpc.ai.connect.useMutation();
+  const [isConnected, setIsConnected] = useState(false);
+
   // Initialize connection when chat opens
   useEffect(() => {
     if (!isOpen) return;
@@ -48,9 +52,12 @@ export function AIChatSidebar() {
     const initializeConnection = async () => {
       try {
         console.log('Initializing AI chat connection...');
-        // Connection will be established when first message is sent
+        await connectMutation.mutateAsync({ sessionId });
+        setIsConnected(true);
+        console.log('Connected successfully');
       } catch (error) {
         console.error('Error initializing connection:', error);
+        setIsConnected(false);
       }
     };
 
@@ -61,14 +68,20 @@ export function AIChatSidebar() {
       if (wsRef.current) {
         wsRef.current.close();
       }
+      setIsConnected(false);
     };
-  }, [isOpen, sessionId]);
+  }, [isOpen, sessionId, connectMutation]);
 
   // Use trpc mutation for sending messages
   const sendMessageMutation = trpc.ai.sendMessage.useMutation();
 
   const handleSendMessage = async (text: string) => {
-    if (!text.trim() || isLoading) return;
+    if (!text.trim() || isLoading || !isConnected) {
+      if (!isConnected) {
+        console.warn('Not connected to AI service');
+      }
+      return;
+    }
 
     // Add user message
     const userMessage: Message = {
@@ -91,24 +104,34 @@ export function AIChatSidebar() {
 
       console.log('Message sent:', result);
 
-      // Simulate AI response (in production, you'd receive this from WebSocket or SSE)
-      // For now, add a placeholder response
-      setTimeout(() => {
-        const assistantMessage: Message = {
-          id: `msg-${Date.now()}`,
-          type: 'assistant',
-          content: 'Thank you for your question. Our team will review your inquiry and get back to you shortly.',
-          timestamp: new Date(),
-        };
-        setMessages(prev => [...prev, assistantMessage]);
-        setIsLoading(false);
-      }, 1000);
+      // Extract AI response from result
+      let assistantContent = 'Thank you for your question. Our team will review your inquiry and get back to you shortly.';
+      
+      if (result && typeof result === 'object' && 'response' in result) {
+        const res = result as any;
+        if (res.response?.payload?.choices?.text) {
+          const textArray = res.response.payload.choices.text;
+          if (Array.isArray(textArray) && textArray.length > 0) {
+            assistantContent = textArray[0]?.content || assistantContent;
+          }
+        }
+      }
+
+      const assistantMessage: Message = {
+        id: `msg-${Date.now()}`,
+        type: 'assistant',
+        content: assistantContent,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, assistantMessage]);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error sending message:', error);
+      const errorMsg = error instanceof Error ? error.message : 'Unknown error';
       const errorMessage: Message = {
         id: `msg-${Date.now()}`,
         type: 'assistant',
-        content: 'Sorry, there was an error processing your message. Please try again.',
+        content: `Sorry, there was an error: ${errorMsg}. Please try again.`,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorMessage]);
