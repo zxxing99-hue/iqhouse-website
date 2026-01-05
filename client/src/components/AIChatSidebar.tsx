@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Send, X, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { trpc } from '@/lib/trpc';
 import './AIChatSidebar.css';
 
 interface Message {
@@ -29,6 +30,7 @@ export function AIChatSidebar() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const scrollRef = useRef<HTMLDivElement>(null);
   const wsRef = useRef<WebSocket | null>(null);
 
@@ -39,60 +41,14 @@ export function AIChatSidebar() {
     }
   }, [messages]);
 
-  // Initialize WebSocket connection
+  // Initialize connection when chat opens
   useEffect(() => {
     if (!isOpen) return;
 
-    let ws: WebSocket | null = null;
-    let reconnectTimeout: NodeJS.Timeout;
-
     const initializeConnection = async () => {
       try {
-        // Get connection URL from server
-        const response = await fetch('/api/trpc/ai.getConnectionUrl');
-        const data = await response.json();
-        
-        if (data.result?.data?.url) {
-          // Connect to Xunfei WebSocket
-          ws = new WebSocket(data.result.data.url);
-          
-          ws.onopen = () => {
-            console.log('Connected to AI assistant');
-          };
-
-          ws.onmessage = (event) => {
-            try {
-              const response = JSON.parse(event.data);
-              // Handle different response formats from Xunfei API
-              if (response.payload?.choices?.text) {
-                const text = response.payload.choices.text[0]?.content || '';
-                if (text) {
-                  const assistantMessage: Message = {
-                    id: `msg-${Date.now()}`,
-                    type: 'assistant',
-                    content: text,
-                    timestamp: new Date(),
-                  };
-                  setMessages(prev => [...prev, assistantMessage]);
-                }
-              }
-            } catch (error) {
-              console.error('Error parsing message:', error);
-            }
-            setIsLoading(false);
-          };
-
-          ws.onerror = (error) => {
-            console.error('WebSocket error:', error);
-            setIsLoading(false);
-          };
-
-          ws.onclose = () => {
-            console.log('Disconnected from AI assistant');
-          };
-
-          wsRef.current = ws;
-        }
+        console.log('Initializing AI chat connection...');
+        // Connection will be established when first message is sent
       } catch (error) {
         console.error('Error initializing connection:', error);
       }
@@ -101,14 +57,17 @@ export function AIChatSidebar() {
     initializeConnection();
 
     return () => {
-      if (reconnectTimeout) clearTimeout(reconnectTimeout);
-      if (ws) {
-        ws.close();
+      // Cleanup
+      if (wsRef.current) {
+        wsRef.current.close();
       }
     };
-  }, [isOpen]);
+  }, [isOpen, sessionId]);
 
-  const handleSendMessage = (text: string) => {
+  // Use trpc mutation for sending messages
+  const sendMessageMutation = trpc.ai.sendMessage.useMutation();
+
+  const handleSendMessage = async (text: string) => {
     if (!text.trim() || isLoading) return;
 
     // Add user message
@@ -123,25 +82,37 @@ export function AIChatSidebar() {
     setInputValue('');
     setIsLoading(true);
 
-    // Send to WebSocket
-    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-      wsRef.current.send(JSON.stringify({
-        header: {
-          app_id: 'xunfei_app_id',
-          uid: `user_${Date.now()}`,
-        },
-        parameter: {
-          chat: {
-            domain: 'assistant',
-            temperature: 0.5,
-          },
-        },
-        payload: {
-          message: {
-            text: [{ role: 'user', content: text }],
-          },
-        },
-      }));
+    try {
+      // Send message through backend
+      const result = await sendMessageMutation.mutateAsync({
+        sessionId,
+        message: text,
+      });
+
+      console.log('Message sent:', result);
+
+      // Simulate AI response (in production, you'd receive this from WebSocket or SSE)
+      // For now, add a placeholder response
+      setTimeout(() => {
+        const assistantMessage: Message = {
+          id: `msg-${Date.now()}`,
+          type: 'assistant',
+          content: 'Thank you for your question. Our team will review your inquiry and get back to you shortly.',
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, assistantMessage]);
+        setIsLoading(false);
+      }, 1000);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage: Message = {
+        id: `msg-${Date.now()}`,
+        type: 'assistant',
+        content: 'Sorry, there was an error processing your message. Please try again.',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+      setIsLoading(false);
     }
   };
 
