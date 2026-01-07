@@ -21,7 +21,6 @@ import BlogList from "./pages/admin/BlogList";
 import BlogForm from "./pages/admin/BlogForm";
 import ProductList from "./pages/admin/ProductList";
 import ProductForm from "./pages/admin/ProductForm";
-import { AIChatSidebar } from "./components/AIChatSidebar";
 function Router() {
   return (
     <Switch>
@@ -47,7 +46,6 @@ function Router() {
         {() => (
           <>
             <Navigation />
-            <AIChatSidebar />
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/oem-odm" component={OemOdm} />
