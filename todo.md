@@ -106,3 +106,11 @@
 - [x] Create backend API to handle message submission and WeChat push
 - [x] Add webhook URL configuration in admin dashboard
 - [x] Test WeChat Enterprise webhook integration
+
+
+## Blog Cover Image Upload & Crop Feature
+- [x] Add local image upload support for blog covers
+- [x] Implement image crop editor with preview
+- [x] Define cover image dimensions (recommended: 1200x630px)
+- [x] Integrate crop tool into blog editor
+- [x] Test upload and crop functionality
