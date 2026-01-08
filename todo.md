@@ -114,3 +114,10 @@
 - [x] Define cover image dimensions (recommended: 1200x630px)
 - [x] Integrate crop tool into blog editor
 - [x] Test upload and crop functionality
+
+
+## Bug Fixes - Image Crop Canvas Error
+- [x] Fix Canvas tainted error when cropping images
+- [x] Support cross-origin images with proper CORS handling
+- [x] Use blob-based approach instead of canvas toDataURL
+- [x] Test crop functionality with various image sources

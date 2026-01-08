@@ -36,33 +36,58 @@ export function ImageCropEditor({
 
     try {
       const image = new Image();
+      image.crossOrigin = 'anonymous'; // 允许跨域图片
       image.src = imageSrc;
 
       image.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        try {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
 
-        if (!ctx) return;
+          if (!ctx) return;
 
-        const pixels = croppedAreaPixels as any;
-        canvas.width = pixels.width;
-        canvas.height = pixels.height;
+          const pixels = croppedAreaPixels as any;
+          canvas.width = pixels.width;
+          canvas.height = pixels.height;
 
-        ctx.drawImage(
-          image,
-          pixels.x,
-          pixels.y,
-          pixels.width,
-          pixels.height,
-          0,
-          0,
-          pixels.width,
-          pixels.height
-        );
+          ctx.drawImage(
+            image,
+            pixels.x,
+            pixels.y,
+            pixels.width,
+            pixels.height,
+            0,
+            0,
+            pixels.width,
+            pixels.height
+          );
 
-        const croppedImage = canvas.toDataURL('image/jpeg', 0.95);
-        onCropComplete(croppedImage);
-        onClose();
+          // 使用 canvas.toBlob 代替 toDataURL 以避免污染问题
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                  const croppedImage = reader.result as string;
+                  onCropComplete(croppedImage);
+                  onClose();
+                };
+                reader.readAsDataURL(blob);
+              }
+            },
+            'image/jpeg',
+            0.95
+          );
+        } catch (error) {
+          console.error('Error processing canvas:', error);
+          // 如果 canvas 被污染，尝试使用原始图片
+          onCropComplete(imageSrc);
+          onClose();
+        }
+      };
+
+      image.onerror = () => {
+        console.error('Error loading image');
       };
     } catch (error) {
       console.error('Error cropping image:', error);
