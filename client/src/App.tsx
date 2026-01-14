@@ -16,6 +16,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
 import InsightDetail from "./pages/InsightDetail";
+import { TermsOfService } from "./pages/TermsOfService";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import AdminDashboard from "./pages/admin/Dashboard";
 import BlogList from "./pages/admin/BlogList";
 import BlogForm from "./pages/admin/BlogForm";
@@ -58,6 +60,8 @@ function Router() {
               <Route path="/insights/:slug">
                 {(params) => <InsightDetail slug={params.slug} />}
               </Route>
+              <Route path="/terms" component={TermsOfService} />
+              <Route path="/privacy" component={PrivacyPolicy} />
               <Route path="/404" component={NotFound} />
               <Route component={NotFound} />
             </Switch>

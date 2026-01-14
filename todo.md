@@ -121,3 +121,12 @@
 - [x] Support cross-origin images with proper CORS handling
 - [x] Use blob-based approach instead of canvas toDataURL
 - [x] Test crop functionality with various image sources
+
+
+## Legal Pages & Company Information
+- [x] Create Terms of Service page
+- [x] Create Privacy Policy page (GDPR compliant)
+- [x] Add company address to footer and contact page
+- [x] Display WhatsApp number (+44 7925 192549) directly on pages
+- [x] Add legal links to navigation/footer
+- [x] Test and verify all legal pages
