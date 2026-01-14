@@ -149,3 +149,10 @@
 - [x] Left-align copyright with left grid for premium feel
 - [x] Remove address from footer, keep only in Contact page form
 - [x] Test footer on mobile and desktop
+
+
+## Contact Page - Add Company Address
+- [ ] Add company address section to Contact page contact methods
+- [ ] Display address in bilingual format (English/Chinese)
+- [ ] Format: LEARNING AGE INTERNATIONAL CO., LTD. with full address
+- [ ] Test display on mobile and desktop

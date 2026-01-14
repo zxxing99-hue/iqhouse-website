@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, Linkedin, MessageSquare, Video } from 'lucide-react';
+import { Mail, Linkedin, MessageSquare, Video, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { trpc } from '@/lib/trpc';
@@ -203,6 +203,15 @@ export default function Contact() {
                           +44 7925 192549
                           WhatsApp
                         </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-2">Address</p>
+                        <p className="text-sm font-semibold mb-1">LEARNING AGE INTERNATIONAL CO., LTD.</p>
+                        <p className="text-sm text-foreground/80">Room 304, Building B1, Phase II, Auto Parts City, Xinqiao Street, Baoan District, Shenzhen City</p>
                       </div>
                     </div>
 
