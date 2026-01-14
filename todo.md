@@ -130,3 +130,9 @@
 - [x] Display WhatsApp number (+44 7925 192549) directly on pages
 - [x] Add legal links to navigation/footer
 - [x] Test and verify all legal pages
+
+## Footer Layout Optimization
+- [x] Consolidate company address, legal links, and contact info into "Connect" section
+- [x] Remove separate "Company Address", "Legal", and "Get in Touch" blocks
+- [x] Simplify footer structure to avoid redundancy
+- [x] Test footer layout on mobile and desktop
