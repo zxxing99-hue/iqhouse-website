@@ -1,6 +1,6 @@
 import { eq, desc, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, posts, InsertPost, products, InsertProduct, messages, InsertMessage, settings, InsertSetting } from "../drizzle/schema";
+import { InsertUser, users, posts, InsertPost, products, InsertProduct, messages, InsertMessage, settings, InsertSetting, successPageConfig, InsertSuccessPageConfig } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -245,4 +245,41 @@ export async function getAllSettings() {
 
   const result = await db.select().from(settings);
   return result;
+}
+
+// Success Page Config Functions
+export async function getSuccessPageConfig(language: 'en' | 'zh' = 'en') {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db
+    .select()
+    .from(successPageConfig)
+    .where(eq(successPageConfig.language, language))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function updateSuccessPageConfig(language: 'en' | 'zh', config: Partial<InsertSuccessPageConfig>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const existing = await getSuccessPageConfig(language);
+  if (existing) {
+    await db
+      .update(successPageConfig)
+      .set(config)
+      .where(eq(successPageConfig.language, language));
+  } else {
+    await db.insert(successPageConfig).values({
+      language,
+      title: config.title || 'Thank You',
+      description: config.description,
+      imageUrl: config.imageUrl,
+      videoUrl: config.videoUrl,
+      ctaText: config.ctaText,
+      ctaLink: config.ctaLink,
+    });
+  }
 }

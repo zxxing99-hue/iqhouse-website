@@ -97,3 +97,22 @@ export const settings = mysqlTable("settings", {
 
 export type Setting = typeof settings.$inferSelect;
 export type InsertSetting = typeof settings.$inferInsert;
+
+/**
+ * Success page configuration table for Google Ads conversion tracking
+ */
+export const successPageConfig = mysqlTable("successPageConfig", {
+  id: int("id").autoincrement().primaryKey(),
+  language: mysqlEnum("language", ["en", "zh"]).default("en").notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  imageUrl: varchar("imageUrl", { length: 512 }),
+  videoUrl: varchar("videoUrl", { length: 512 }),
+  ctaText: varchar("ctaText", { length: 255 }),
+  ctaLink: varchar("ctaLink", { length: 512 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SuccessPageConfig = typeof successPageConfig.$inferSelect;
+export type InsertSuccessPageConfig = typeof successPageConfig.$inferInsert;

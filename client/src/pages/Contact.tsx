@@ -10,11 +10,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Linkedin, MessageSquare, Video, MapPin } from 'lucide-react';
 import { useState } from 'react';
+import { useLocation } from 'wouter';
 import { toast } from 'sonner';
 import { trpc } from '@/lib/trpc';
 
 export default function Contact() {
   const { t } = useLanguage();
+  const [, setLocation] = useLocation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -39,8 +41,7 @@ export default function Contact() {
         message: formData.message,
       });
       
-      toast.success(t.contact.form.success);
-      setFormData({ name: '', email: '', company: '', country: '', message: '' });
+      setLocation('/thank-you');
     } catch (error) {
       console.error('Error submitting message:', error);
       toast.error('Failed to submit message. Please try again.');

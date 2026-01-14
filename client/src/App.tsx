@@ -18,11 +18,13 @@ import Insights from "./pages/Insights";
 import InsightDetail from "./pages/InsightDetail";
 import { TermsOfService } from "./pages/TermsOfService";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+import ThankYou from "./pages/ThankYou";
 import AdminDashboard from "./pages/admin/Dashboard";
 import BlogList from "./pages/admin/BlogList";
 import BlogForm from "./pages/admin/BlogForm";
 import ProductList from "./pages/admin/ProductList";
 import ProductForm from "./pages/admin/ProductForm";
+import SuccessPageConfig from "./pages/admin/SuccessPageConfig";
 function Router() {
   return (
     <Switch>
@@ -42,6 +44,7 @@ function Router() {
       <Route path="/admin/products/edit/:id">
         {(params) => <ProductForm productId={params.id} />}
       </Route>
+      <Route path="/admin/success-page" component={SuccessPageConfig} />
 
       {/* Public Routes - With Navigation/Footer */}
       <Route>
@@ -62,6 +65,7 @@ function Router() {
               </Route>
               <Route path="/terms" component={TermsOfService} />
               <Route path="/privacy" component={PrivacyPolicy} />
+              <Route path="/thank-you" component={ThankYou} />
               <Route path="/404" component={NotFound} />
               <Route component={NotFound} />
             </Switch>

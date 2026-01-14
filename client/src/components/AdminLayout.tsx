@@ -8,7 +8,8 @@ import {
   Package, 
   LogOut,
   Menu,
-  X
+  X,
+  CheckCircle2
 } from 'lucide-react';
 import { useState } from 'react';
 import { trpc } from '@/lib/trpc';
@@ -31,6 +32,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { icon: LayoutDashboard, label: '控制台', href: '/admin' },
     { icon: FileText, label: '博客文章', href: '/admin/blog' },
     { icon: Package, label: '产品管理', href: '/admin/products' },
+    { icon: CheckCircle2, label: '成功页面', href: '/admin/success-page' },
   ];
 
   const SidebarContent = () => (
