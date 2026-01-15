@@ -167,3 +167,9 @@
 - [x] 支持后台配置：标题、描述文字、图片、视频
 - [x] 编写并通过单元测试
 - [x] 验证表单提交和成功页面重定向流程
+
+
+## Google Ads / Google Tag (gtag) 集成
+- [x] 在client/index.html全局head区域添加Google tag脚本
+- [x] 验证gtag代码在所有页面加载（包括Insights、Contact、Thank You）
+- [x] 测试gtag在浏览器控制台正常初始化
